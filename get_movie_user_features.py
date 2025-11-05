@@ -99,13 +99,10 @@ def generate_user_features(users_arr,ratings_arr):
     # go through all users    
     for i in range(0,num_users):
         user_ratings = ratings_arr[ratings_arr[:,0] == i+1] # creates a list of all the movies the user has watched
-
         for movie_id in user_ratings[:,1]: # iterates through the list of movies the user has watched
             user_features[i, movie_id + 2] = 1  # sets the corresponding index to 1, since they have watched it
     
     return user_features
 
-print(generate_user_features(users_arr,ratings_arr)[5,:20])
-user1 = generate_user_features(users_arr, ratings_arr)
 # print(user1.shape)
 # generate_user_features(users_arr,ratings_arr)

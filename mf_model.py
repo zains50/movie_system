@@ -35,6 +35,7 @@ class MLP_model(nn.Module):
         return x
 
 
+
 model_layers = [
     (2,64),
     (64,4),

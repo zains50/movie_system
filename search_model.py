@@ -11,7 +11,7 @@ model = SentenceTransformer("multi-qa-MiniLM-L6-cos-v1")
 movie_name_encode = model.encode(movie_names,batch_size=64,show_progress_bar=True,convert_to_tensor=True)
 
 
-search_query = "spider"
+search_query = "marvel movies"
 K=20
 search_query_enocde = model.encode(search_query,convert_to_tensor=True)
 
