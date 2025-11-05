@@ -17,7 +17,6 @@ class MLP_model(nn.Module):
     def __init__(self, num_layers, layer_dims):
         super().__init__()
         # num_layers , such as 4
-        # layer_dims, such as [2000,64,64,64]
         assert  num_layers == len(layer_dims)
         self.linear_list = nn.ModuleList([])
 
