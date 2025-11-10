@@ -24,8 +24,6 @@ class MLP_model(nn.Module):
             input,output = layer_dims[x]
             print(input)
             layer = MLP_layer(input,output)
-
-
             self.linear_list.append(layer)
             print(f'created layer: {x} : {layer.linear.weight.shape}')
 
