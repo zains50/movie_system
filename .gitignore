@@ -1,5 +1,8 @@
 #DO NOT COMMIT APIKEY.ENV
 *.env
+ml-1m/user_features.npy
+ml-1m/movie_features.npy
+movie_arrays/arrays.pkl
 
 __pycache__/
 .idea/

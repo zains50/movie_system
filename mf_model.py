@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import pandas as pd
 import numpy as np
-from get_movie_user_features import generate_movie_features, generate_user_features
+from get_user_movie_features import generate_movie_features, generate_user_features
 from data_extraction import get_all_features_numpy
 
 movies_arr, ratings_arr, users_arr = get_all_features_numpy()
@@ -68,19 +68,24 @@ def get_items_for_user(user_id):
     pos_idx = torch.randint(0, len(movies_watched), (1,)).item()
     neg_idx = torch.randint(0, len(movies_not_watched), (1,)).item()
 
-    return (user_id+1, movies_watched[pos_idx]+1, movies_not_watched[neg_idx]+1)
+    return (user_id, movies_watched[pos_idx], movies_not_watched[neg_idx])
+
+
+
+
+
+
             
 
-user_features = generate_user_features(users_arr, ratings_arr)
-movie_features = generate_movie_features(movies_arr)
 
-model_layers = [
-    (2,64),
-    (64,4),
-    (4,1)
-]
-
-for i in range(1000,1050):
-    print(get_items_for_user(i)) # yay
-
-bpr_loss_fn = BPRLoss()
+#
+# model_layers = [
+#     (2,64),
+#     (64,4),
+#     (4,1)
+# ]
+#
+# for i in range(1000,1050):
+#     print(get_items_for_user(i)) # yay
+#
+# bpr_loss_fn = BPRLoss()

@@ -1,0 +1,105 @@
+[33mcommit 1398bb927e8810cef3780bcfd63db57b4c6eda26[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: zains50 <zain.syed0165@gmail.com>
+Date:   Mon Nov 10 22:49:47 2025 -0500
+
+    added pickling for file upload
+
+[33mcommit 276ebfebf7edf3a15bab6c96730ddc30133309ff[m
+Author: zains50 <zain.syed0165@gmail.com>
+Date:   Mon Nov 10 22:48:31 2025 -0500
+
+    added pickling for faster load
+
+[33mcommit 647e9e59b914cd8169faacd21aa0a5790c908d89[m
+Author: zains50 <zain.syed0165@gmail.com>
+Date:   Mon Nov 10 22:42:42 2025 -0500
+
+    added pickling for faster file loads
+
+[33mcommit 70fea04268ae266ad45118478984ea72d947461a[m
+Author: zains50 <zain.syed0165@gmail.com>
+Date:   Mon Nov 10 22:40:07 2025 -0500
+
+    Added pickling for faster array loads
+
+[33mcommit c6d778f7b01988b5c8924baac55e27fd23c4b328[m[33m ([m[1;31morigin/master[m[33m)[m
+Merge: 885d8ec c9919f5
+Author: Ryan Coones <120350948+RyanCoones@users.noreply.github.com>
+Date:   Mon Nov 10 21:33:00 2025 -0500
+
+    Merge pull request #1 from zains50/ryanbprloss
+    
+    bpr loss function + triplet gathering
+
+[33mcommit c9919f56514ff2a58fadc35ca28b87f780e62bc3[m[33m ([m[1;31morigin/ryanbprloss[m[33m)[m
+Author: Ryan Coones <wrcoones@gmail.com>
+Date:   Mon Nov 10 21:22:38 2025 -0500
+
+    fixed get_items_for_user() now we can generate triplets for bpr loss!
+
+[33mcommit 6b78ff888a24abc3423faa957522193b9aa1c8bc[m
+Author: Ryan Coones <wrcoones@gmail.com>
+Date:   Mon Nov 10 20:24:42 2025 -0500
+
+    bpr loss
+
+[33mcommit 885d8ec7a3a98713d8e8922889e16248f9da49c3[m[33m ([m[1;32mryanbprloss[m[33m)[m
+Author: zains50 <zain.syed0165@gmail.com>
+Date:   Mon Nov 10 00:11:28 2025 -0500
+
+    Added more movie information including poster and summary
+
+[33mcommit 6ffbf7b8664247406df297142d4f79fea564ee4f[m
+Author: zains50 <zain.syed0165@gmail.com>
+Date:   Wed Nov 5 18:23:16 2025 -0500
+
+    added more data to work with
+
+[33mcommit 3ee95b64dfe5bdca47ddaab6bf6d88086a4be6b9[m
+Merge: 6969cf9 25ad398
+Author: zains50 <zain.syed0165@gmail.com>
+Date:   Wed Nov 5 18:03:43 2025 -0500
+
+    Merge branch 'master' of https://github.com/zains50/4050_final_project
+
+[33mcommit 6969cf9b32aab21c534a847b12ae3dd2d432fad9[m
+Author: zains50 <zain.syed0165@gmail.com>
+Date:   Wed Nov 5 17:59:32 2025 -0500
+
+    Added dictionary generation for user-itme quick lookup
+
+[33mcommit 8f18c7b71dada6084651bc079aae75d766b040c8[m
+Author: zains50 <zain.syed0165@gmail.com>
+Date:   Wed Nov 5 15:45:17 2025 -0500
+
+    added a dummy search functionality using a sentence transformer pretraiend
+
+[33mcommit 25ad39851f4b9789890cf0780da57838a69ffebb[m
+Author: Ryan Coones <120350948+RyanCoones@users.noreply.github.com>
+Date:   Wed Nov 5 11:29:58 2025 -0500
+
+    Delete .idea directory
+
+[33mcommit 1dbccaee1263052c5431ac89afa286520040788a[m
+Author: Ryan Coones <120350948+RyanCoones@users.noreply.github.com>
+Date:   Wed Nov 5 11:29:40 2025 -0500
+
+    Delete __pycache__ directory
+
+[33mcommit ef126419180d8de84e72af945fc6b55822823f58[m
+Author: zains50 <zain.syed0165@gmail.com>
+Date:   Wed Nov 5 00:35:26 2025 -0500
+
+    small indexing error fix
+
+[33mcommit ffb0f8a0cb98622fab2353675b5d671cf8cfc2d0[m
+Author: Ryan Coones <wrcoones@gmail.com>
+Date:   Tue Nov 4 23:05:24 2025 -0500
+
+    hid api key in env file, added gitignore, implemented and verified generate_user_features function
+
+[33mcommit 0143a3cae6f12f03a1f40d0675d2362d1b9d26ac[m[33m ([m[1;32mzain-work[m[33m, [m[1;32mmain[m[33m)[m
+Author: zains50 <zain.syed0165@gmail.com>
+Date:   Tue Nov 4 13:10:15 2025 -0500
+
+    first commit
