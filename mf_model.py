@@ -3,10 +3,8 @@ import torch
 import torch.nn as nn
 import pandas as pd
 import numpy as np
-from get_user_movie_features import generate_movie_features, generate_user_features
-from data_extraction import get_all_features_numpy
+import torch.nn.functional as F
 
-movies_arr, ratings_arr, users_arr = get_all_features_numpy()
 
 class MLP_layer(nn.Module):
     def __init__(self,input_dim,output_dim):
@@ -20,55 +18,39 @@ class MLP_layer(nn.Module):
 
 
 class MLP_model(nn.Module):
-    def __init__(self, num_layers, layer_dims):
+    def __init__(self, num_layers, layer_dims,movie_feature_size,user_feature_size):
         super().__init__()
         # num_layers , such as 4
         assert  num_layers == len(layer_dims)
         self.linear_list = nn.ModuleList([])
 
-        for x in range(0,num_layers):
-            input,output = layer_dims[x]
-            print(input)
-            layer = MLP_layer(input,output)
+        for i in range(num_layers - 1):
+            layer = MLP_layer(layer_dims[i], layer_dims[i + 1])
             self.linear_list.append(layer)
-            print(f'created layer: {x} : {layer.linear.weight.shape}')
+            print(f'created layer: {i} : {layer.linear.weight.shape}')
 
-    def forward(self, x):
+        self.movie_projection = nn.Linear(movie_feature_size,layer_dims[0])
+        self.user_projection = nn.Linear(user_feature_size, layer_dims[0])
+
+    def forward(self, users, pos_movies, neg_movies):
+        # project movie and user features towards a common domain
+        users = self.user_projection(users)
+        pos_movies = self.movie_projection(pos_movies)
+        neg_movies = self.movie_projection(neg_movies)
+        x = torch.stack([users, pos_movies, neg_movies], dim=0)  # shape: 3 x batch x features
+
+
         for layer in self.linear_list:
             x = layer(x)
-        return x
+            x = F.relu(x)
+            # x = F.dropout(x,p=0.25, training=self.training)
+
+        users, pos_movies, neg_movies = x[0],x[1],x[2]
+
+        return users, pos_movies, neg_movies
     
 
-class BPRLoss(nn.Module):
-    def __init__(self):
-        super().__init__()
 
-    def forward(self, user_emb, pos_emb, neg_emb):
-        # user_emb, pos_emb, neg_emb have shape [batch_size, embedding_dim]
-
-        pos_scores = torch.sum(user_emb * pos_emb, dim=1)
-        neg_scores = torch.sum(user_emb * neg_emb, dim=1)
-
-        diff = pos_scores - neg_scores
-        loss = -torch.mean(torch.log(torch.sigmoid(diff) + 1e-8))
-
-        return loss
-
-def get_items_for_user(user_id):
-    usersmovies = user_features[user_id, 3:]
-    movies_watched = []
-    movies_not_watched = []
-
-    for i in range(len(usersmovies)):
-        if usersmovies[i] == 1:
-            movies_watched.append(i)
-        else:
-            movies_not_watched.append(i)
-
-    pos_idx = torch.randint(0, len(movies_watched), (1,)).item()
-    neg_idx = torch.randint(0, len(movies_not_watched), (1,)).item()
-
-    return (user_id, movies_watched[pos_idx], movies_not_watched[neg_idx])
 
 
 
@@ -78,14 +60,3 @@ def get_items_for_user(user_id):
             
 
 
-#
-# model_layers = [
-#     (2,64),
-#     (64,4),
-#     (4,1)
-# ]
-#
-# for i in range(1000,1050):
-#     print(get_items_for_user(i)) # yay
-#
-# bpr_loss_fn = BPRLoss()

@@ -58,10 +58,12 @@ def generate_movie_features():
 
     if os.path.exists("ml-1m/movie_features.npy"):
         movie_features = np.load("ml-1m/movie_features.npy")
+        print(f'len mf: {len(movie_features)}')
         print(f'loading saved movie features file')
 
     else:
         num_movies = len(movies_arr)
+        # print(f'len movies arr: {num_movies}')
         num_genres = 18
         genre_map_list = []
         genres = movies_arr[:, -1]
@@ -101,7 +103,7 @@ def generate_user_features():
 
     else:
         num_users = len(users_arr)
-        user_features = np.zeros((num_users,3955)) # default value for each movie will be 0, and we update the indexes corresponding to the movies the user has watched.
+        user_features = np.zeros((num_users,3+3952)) # default value for each movie will be 0, and we update the indexes corresponding to the movies the user has watched.
 
         # convert users_arr to a dataframe (easier to work with)
         users_df = pd.DataFrame(users_arr)
