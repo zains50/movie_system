@@ -2,6 +2,7 @@
 *.env
 ml-1m/user_features.npy
 ml-1m/movie_features.npy
+movie_posters
 movie_arrays/arrays.pkl
 
 __pycache__/

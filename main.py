@@ -60,7 +60,8 @@ print(NUM_MOVIE)
 
 print(movies_features.shape)
 
-model = MLP_model(num_layers=num_layers, layer_dims=layer_dims,movie_feature_size=movie_feature_dim,user_feature_size=user_features_dim)
+model = MLP_model(num_layers=num_layers, layer_dims=layer_dims,movie_feature_size=movie_feature_dim,
+                  user_feature_size=user_features_dim,movie_emb=movies_features,user_emb=user_features,user_item_dict=user_item_dict)
 
 if torch.cuda.is_available():
     model = model.to("cuda:0")
@@ -83,12 +84,12 @@ for step in tqdm(range(epochs)):
     t1 = time.time()
     users, pos_movie, neg_movie = zip(*triplets)
     user_ids = list(users)
-    pos_movies = list(pos_movie)
-    neg_movies = list(neg_movie)
+    pos_movie_ids= list(pos_movie)
+    neg_movie_ids = list(neg_movie)
 
     t2 = time.time()
-    user_emb, pos_emb, neg_emb = user_features[user_ids], movies_features[pos_movies], movies_features[neg_movies]
-    user_emb, pos_emb, neg_emb = model(user_emb,pos_emb,neg_emb)
+    user_emb, pos_emb, neg_emb = user_features[user_ids], movies_features[pos_movie_ids], movies_features[neg_movie_ids]
+    user_emb, pos_emb, neg_emb = model(user_emb,pos_emb,neg_emb,user_ids,pos_movie_ids,neg_movie_ids)
     loss = loss_f(user_emb,pos_emb,neg_emb)
     loss.backward()
     optimizer.step()
