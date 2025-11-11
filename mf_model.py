@@ -57,7 +57,7 @@ class BPRLoss(nn.Module):
         return loss
 
 def get_items_for_user(user_id):
-    usersmovies = user_features[user_id-1, 3:]
+    usersmovies = user_features[user_id, 3:]
     movies_watched = []
     movies_not_watched = []
 
@@ -70,7 +70,7 @@ def get_items_for_user(user_id):
     pos_idx = torch.randint(0, len(movies_watched), (1,)).item()
     neg_idx = torch.randint(0, len(movies_not_watched), (1,)).item()
 
-    return (user_id, movies_watched[pos_idx], movies_not_watched[neg_idx])
+    return (user_id+1, movies_watched[pos_idx]+1, movies_not_watched[neg_idx]+1)
             
 
 user_features = generate_user_features(users_arr, ratings_arr)
@@ -82,7 +82,7 @@ model_layers = [
     (4,1)
 ]
 
-for i in range(10):
-    print(get_items_for_user(i))
+for i in range(1000,1050):
+    print(get_items_for_user(i)) # yay
 
 bpr_loss_fn = BPRLoss()
