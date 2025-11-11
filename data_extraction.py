@@ -19,15 +19,11 @@ def get_all_features_numpy():
         users_arr = pd.read_csv(DIR + USERS,delimiter="::",engine="python").to_numpy()
         all_arrays = (movies_arr,ratings_arr,users_arr)
         pd.to_pickle(all_arrays, pickle_path)
-
+        print(f'len movie ar: {len(movies_arr)}')
     return movies_arr, ratings_arr, users_arr
 
 
 
-def get_movies_numpy():
-    movie_arr = pd.read_csv(DIR + MOVIES,delimiter="::",engine="python")
-    movies_arr = movie_arr.to_numpy()
-    return movies_arr
 
 
 
