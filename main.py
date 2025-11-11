@@ -3,7 +3,7 @@ from mf_model import MLP_model
 import numpy as np
 from torch.optim import Adam
 from get_user_movie_features import generate_movie_features, generate_user_features
-from get_user_item_dict import get_user_item_dict
+# from get_user_item_dict import get_user_item_dict
 from bpr_loss import BPRLoss
 from tqdm import  tqdm
 import time
@@ -14,7 +14,7 @@ from torch.utils.data import DataLoader
 
 def train():
     movies_features, user_features = generate_movie_features(), generate_user_features()
-    user_item_dict = get_user_item_dict()
+    # user_item_dict = get_user_item_dict()
 
     movies_features = torch.from_numpy(movies_features)
     movies_features = movies_features.to(torch.float32)
@@ -36,17 +36,17 @@ def train():
     layer_dims = [64,64,64]
 
     dataset = MovieDataset(NUM_USER, NUM_MOVIE,user_features,movies_features)
+    print(dataset[33])
 
     train_loader = DataLoader(
         dataset,
-        batch_size=1024,      # number of users per batch
+        batch_size=2048,      # number of users per batch
         shuffle=True,       # reshuffles users each epoch
-        num_workers=2,      # parallel data loading
+        num_workers=1,      # parallel data loading
     )
 
-
     model = MLP_model(num_layers=num_layers, layer_dims=layer_dims,movie_feature_size=movie_feature_dim,
-                      user_feature_size=user_features_dim,movie_emb=movies_features,user_emb=user_features,user_item_dict=user_item_dict)
+                      user_feature_size=user_features_dim,movie_emb=movies_features,user_emb=user_features,user_item_dict=dataset.train_dict)
 
     if torch.cuda.is_available():
         model = model.to("cuda:0")

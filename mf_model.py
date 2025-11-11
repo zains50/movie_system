@@ -45,11 +45,12 @@ class MLP_model(nn.Module):
         pos_movies_emb = movie_emb[pos_movie_ids]
         neg_movies_emb = movie_emb[neg_movie_ids]
 
-        # for i,u in enumerate(user_ids):
-        #     neighbors = self.user_item_dict[u]
-        #     neighbor_embs = movie_emb[neighbors]
-        #     neighbor_embs = torch.mean(neighbor_embs,dim=0)
-        #     user_emb[i] = user_emb[i] + neighbor_embs
+        for i,u in enumerate(user_ids):
+            neighbors = self.user_item_dict[int(u)]
+
+            neighbor_embs = movie_emb[neighbors]
+            neighbor_embs = torch.mean(neighbor_embs,dim=0)
+            user_emb[i] = user_emb[i] + neighbor_embs
 
 
         x = torch.stack([user_emb, pos_movies_emb, neg_movies_emb], dim=0)  # shape: 3 x batch x features
