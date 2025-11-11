@@ -1,7 +1,8 @@
 from data_extraction import get_all_features_numpy
 import time
-
 import pandas as pd
+
+
 movies_arr, ratings_arr, users_arr = get_all_features_numpy()
 
 def get_user_item_dict(users_arr=users_arr,ratings_arr=ratings_arr):

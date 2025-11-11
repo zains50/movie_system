@@ -67,4 +67,5 @@ def save_posters():
 
 
 
-save_posters()
+sum = get_movie_title_and_summary_list()
+print(sum[0])
