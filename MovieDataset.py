@@ -12,6 +12,7 @@ class MovieDataset(Dataset):
         self.user_features = user_features
         self.movie_features = movie_features
         self.train_dict = train_dict
+        self.test_dict = test_dict
         self.NUM_TRAIN_INTERACTIONS = NUM_TRAIN_INTERACTIONS
 
         # flatten all interactions into a list of (user, pos_item) pairs

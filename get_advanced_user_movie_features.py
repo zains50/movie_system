@@ -1,6 +1,15 @@
+from lxml.html.builder import EMBED
+
 from data_extraction import  get_all_features_numpy
 import json
 import requests
+import os
+import re
+import numpy as np
+
+from sentence_transformers import  SentenceTransformer
+from PIL import Image
+import torch
 
 movies_arr, ratings_arr, users_arr = get_all_features_numpy()
 
@@ -51,7 +60,7 @@ def save_posters():
     omdb_movie_dict_list = get_omdb_movie_dict_list()
     poster_link_list = get_movie_poster_link_list()
     for i,p in enumerate(poster_link_list):
-        if p is not "" and p is not "NOT_FOUND":
+        if p != "" and p != "NOT_FOUND":
             url = p
             file_name = f'movie_posters/{i}_{omdb_movie_dict_list[i]["Title"]}.jpg'
             try:
@@ -66,6 +75,75 @@ def save_posters():
                 print(f"Error downloading {url}: {e}")
 
 
+def get_movie_file_names(path):
+    files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+    files = sorted(files, key=lambda f: int(re.match(r"\d+", f).group()))
 
-sum = get_movie_title_and_summary_list()
-print(sum[0])
+    return_files = []
+
+    i = 0
+    for f in files:
+        m = re.match(r"\d+", f)       # match digits at the start
+        if m:
+            file_num = int(m.group())  # convert to integer
+        else:
+            print(f, "no number at start")
+
+        if i == file_num:
+            return_files.append(f)
+            i=i+1
+        else:
+            # print(f'else happened')
+            while i-1 != file_num:
+                # print(i, file_num)
+                i=i+1
+                return_files.append("no file found")
+
+        # print(i-1, f)
+
+
+    return return_files
+
+def encodeText(text_list):
+    model = SentenceTransformer("all-MiniLM-L6-v2")
+    emb = model.encode(text_list)
+    return emb
+
+def is_valid_image(path):
+    try:
+        with Image.open(path) as img:
+            img.verify()   # verifies header
+        return True
+    except Exception:
+        return False
+
+
+def encodeImages(movie_poster_files):
+    model = SentenceTransformer("clip-ViT-B-32")
+
+    # get embedding dimension by encoding a dummy image
+    dummy = model.encode(Image.new("RGB", (32, 32)))
+    emb_dim = len(dummy)
+    embeddings = []
+    assert len(movie_poster_files) == 3952
+
+    for p in movie_poster_files:
+        file = "movie_posters/" + p
+        if is_valid_image(file):
+            img = Image.open(file).convert("RGB")
+            emb = model.encode(img)
+            embeddings.append(emb)
+        else:
+            embeddings.append(np.zeros(emb_dim))
+
+    return np.vstack(embeddings)
+
+movie_poster_files = get_movie_file_names("movie_posters")
+print(len(movie_poster_files))
+# movie_summary_files = get_movie_title_and_summary_list()
+
+poster_encodings = encodeImages(movie_poster_files)
+# summary_embeddings = encodeText(movie_summary_files)
+
+np.save("advanced_movie_features/before_2000/poster_embeddings.npy",poster_encodings)
+# np.save("advanced_movie_features/before_2000/summary_embeddings.npy",summary_embeddings)
