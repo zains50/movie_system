@@ -8,13 +8,22 @@ from bpr_loss import BPRLoss
 from tqdm import  tqdm
 import time
 import matplotlib.pyplot as plt
-
+from recall_at_k import  recall_at_k
 from MovieDataset import MovieDataset
 from torch.utils.data import DataLoader
 
-def train():
-    movies_features, user_features = generate_movie_features(), generate_user_features()
-    # user_item_dict = get_user_item_dict()
+def train(embed_size=32,num_layers=3,batch_size=2048,epochs=1000,weight_decay=1e-7,use_text_data=True, use_poster_data=True):
+    user_features = generate_user_features()
+    movies_features = generate_movie_features()
+
+    if use_text_data:
+        text_features = np.load("advanced_movie_features/before_2000/summary_embeddings.npy")
+        movies_features = np.concatenate((movies_features, text_features), axis=1)
+
+    if use_poster_data:
+        poster_features = np.load("advanced_movie_features/before_2000/poster_embeddings.npy")
+        movies_features = np.concatenate((movies_features,poster_features),axis=1)
+
 
     movies_features = torch.from_numpy(movies_features)
     movies_features = movies_features.to(torch.float32)
@@ -32,17 +41,16 @@ def train():
     movie_feature_dim = movies_features.size(1)
     user_features_dim = user_features.size(1)
 
-    num_layers = 3
-    layer_dims = [64,64,64]
+    layer_dims = [embed_size] * num_layers
 
     dataset = MovieDataset(NUM_USER, NUM_MOVIE,user_features,movies_features)
-    print(dataset[33])
+
 
     train_loader = DataLoader(
         dataset,
-        batch_size=2048,      # number of users per batch
+        batch_size=batch_size,      # number of users per batch
         shuffle=True,       # reshuffles users each epoch
-        num_workers=1,      # parallel data loading
+        num_workers=0,      # parallel data loading
     )
 
     model = MLP_model(num_layers=num_layers, layer_dims=layer_dims,movie_feature_size=movie_feature_dim,
@@ -51,20 +59,20 @@ def train():
     if torch.cuda.is_available():
         model = model.to("cuda:0")
 
-    optimizer = Adam(params=model.parameters(), lr=0.001, weight_decay=1e-4)
+    optimizer = Adam(params=model.parameters(), lr=0.001,weight_decay=weight_decay)
     loss_f = BPRLoss()
 
 
-    epochs = 1000
-    batch_size = 2048
     loss_arr = []
+    print(f'BEFORE TRAINING')
+    recall =  recall_at_k(NUM_USER,NUM_MOVIE, 20, model, dataset.test_dict)
+    print(f'RECALL: {recall}')
 
     for step in tqdm(range(epochs)):
-        for batch in tqdm(train_loader):
+        for i,batch in tqdm(enumerate(train_loader)):
             t0 = time.time()
-
             user_emb, pos_movie_emb, neg_movie_emb, user_id, pos_movie_id, neg_movie_id = batch
-            user_emb, pos_emb, neg_emb = model(user_emb, pos_movie_emb, neg_movie_emb, user_id, pos_movie_id, neg_movie_id)
+            user_emb, pos_emb, neg_emb = model(user_id, pos_movie_id, neg_movie_id)
             loss = loss_f(user_emb,pos_emb,neg_emb)
             loss.backward()
             optimizer.step()
@@ -72,6 +80,16 @@ def train():
             t3 = time.time()
 
             print(f'loss: {loss}')
+
+            if i % 10 == 0:
+                test_recall =  recall_at_k(NUM_USER,NUM_MOVIE, 20, model, dataset.test_dict)
+                train_recall = recall_at_k(NUM_USER,NUM_MOVIE, 20, model, dataset.train_dict)
+                print("===== Results =====")
+                print(f"Train: {train_recall:.4f}")
+                print(f"Test : {test_recall:.4f}")
+                print(f'Train Loss: {loss:.4f}')
+                print("=============================")
+
 
 
 if __name__ == "__main__":

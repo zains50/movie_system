@@ -4,6 +4,9 @@ import torch.nn as nn
 import pandas as pd
 import numpy as np
 import torch.nn.functional as F
+import torch_scatter
+from recall_at_k import recall_at_k
+from torch.nn.utils.rnn import pad_sequence
 
 
 class MLP_layer(nn.Module):
@@ -36,36 +39,59 @@ class MLP_model(nn.Module):
         self.movie_projection = nn.Linear(movie_feature_size,layer_dims[0])
         self.user_projection = nn.Linear(user_feature_size, layer_dims[0])
 
-    def forward(self, users, pos_movies, neg_movies,user_ids,pos_movie_ids,neg_movie_ids):
+    def forward(self, user_ids,pos_movie_ids,neg_movie_ids):
         # project movie and user features towards a common domain
 
-        user_emb = self.user_projection(users)
+
+        user_emb = self.user_projection(self.user_emb)
         movie_emb = self.movie_projection(self.movie_emb)
 
         pos_movies_emb = movie_emb[pos_movie_ids]
         neg_movies_emb = movie_emb[neg_movie_ids]
 
-        for i,u in enumerate(user_ids):
+        source_list = []
+        target_list = []
+
+        for u in user_ids:
             neighbors = self.user_item_dict[int(u)]
+            neighbors = [n + self.user_emb.size(0) for n in neighbors]  # shift movie IDs
+            target_list.extend([u] * len(neighbors))
+            source_list.extend(neighbors)
 
-            neighbor_embs = movie_emb[neighbors]
-            neighbor_embs = torch.mean(neighbor_embs,dim=0)
-            user_emb[i] = user_emb[i] + neighbor_embs
+        source = torch.tensor(source_list).to(user_emb.device)
+        target = torch.tensor(target_list).to(user_emb.device)
 
+        all_item_emb = torch.cat([user_emb,movie_emb])
+        edge_messages = all_item_emb[source]     # (num_edges, feat_dim)
 
-        x = torch.stack([user_emb, pos_movies_emb, neg_movies_emb], dim=0)  # shape: 3 x batch x features
+        # print(all_item_emb.size(0))
 
+        out = torch_scatter.scatter_add(
+            src=edge_messages,
+            index=target,
+            dim=0,
+            dim_size=all_item_emb.size(0)
+        )
+        # print(user_emb)
+
+        user_emb = out[user_ids]
+        # print(user_emb)
+
+        x = torch.cat([user_emb, pos_movies_emb, neg_movies_emb], dim=0)
+        # print(x.shape)
 
         for layer in self.linear_list:
             x = layer(x)
             x = F.relu(x)
             # x = F.dropout(x,p=0.25, training=self.training)
+        a = len(user_emb)
+        b = len(pos_movies_emb)
+        c = len(neg_movies_emb)
 
-        users, pos_movies, neg_movies = x[0],x[1],x[2]
+        users, pos_movies, neg_movies = x[:a],x[a:a+b],x[a+b:a+b+c]
 
 
         return users, pos_movies, neg_movies
-    
 
 
 
@@ -74,6 +100,7 @@ class MLP_model(nn.Module):
 
 
 
-            
+
+
 
 

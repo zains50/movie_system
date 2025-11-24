@@ -4,6 +4,7 @@ ml-1m/user_features.npy
 ml-1m/movie_features.npy
 movie_posters
 movie_arrays/arrays.pkl
+advanced_movie_features
 
 __pycache__/
 .idea/
