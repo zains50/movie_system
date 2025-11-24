@@ -139,11 +139,19 @@ def encodeImages(movie_poster_files):
     return np.vstack(embeddings)
 
 movie_poster_files = get_movie_file_names("movie_posters")
-print(len(movie_poster_files))
-# movie_summary_files = get_movie_title_and_summary_list()
+# print(len(movie_poster_files))
+movie_summary_files = get_movie_title_and_summary_list()
 
-poster_encodings = encodeImages(movie_poster_files)
+
+for x, y ,z in zip(movies_arr, movie_summary_files,movie_poster_files):
+    print(x, y,z)
+
+
+# print(movie_summary_files)
+# print(movi)
+
+# poster_encodings = encodeImages(movie_poster_files)
 # summary_embeddings = encodeText(movie_summary_files)
 
-np.save("advanced_movie_features/before_2000/poster_embeddings.npy",poster_encodings)
+# np.save("advanced_movie_features/before_2000/poster_embeddings.npy",poster_encodings)
 # np.save("advanced_movie_features/before_2000/summary_embeddings.npy",summary_embeddings)

@@ -11,12 +11,68 @@ import matplotlib.pyplot as plt
 from recall_at_k import  recall_at_k
 from MovieDataset import MovieDataset
 from torch.utils.data import DataLoader
+import json
+import csv
+
 
 import os
 save_folder = "SAVED_RUNS"
 
+def create_experiment_folder(base="experiment_runs"):
+    os.makedirs(base, exist_ok=True)
 
-def train(embed_size=32,num_layers=3,batch_size=2048,epochs=1000,weight_decay=1e-7,gpu=0,use_text_data=True, use_poster_data=True):
+    # Find next available experiment index
+    existing = [
+        int(x.split("_")[1])
+        for x in os.listdir(base)
+        if x.startswith("experiment_") and x.split("_")[1].isdigit()
+    ]
+
+    next_idx = max(existing) + 1 if existing else 1
+    folder = os.path.join(base, f"experiment_{next_idx}")
+    os.makedirs(folder, exist_ok=True)
+    os.makedirs(os.path.join(folder, "model_checkpoints"), exist_ok=True)
+
+    return folder
+
+
+def save_params_json(folder, params):
+    with open(os.path.join(folder, "params.json"), "w") as f:
+        json.dump(params, f, indent=4)
+
+
+def open_recall_csv(folder):
+    csv_path = os.path.join(folder, "recall_log.csv")
+    f = open(csv_path, "w", newline="")
+    writer = csv.writer(f)
+    writer.writerow(["epoch", "train_recall", "test_recall", "train_loss","val_loss"])
+    return f, writer
+
+
+
+def train(embed_size=256,num_layers=4,batch_size=2048,epochs=1000,weight_decay=1e-4,gpu=0,save_every=5,use_text_data=True, use_poster_data=True):
+
+    exp_folder = create_experiment_folder()
+    print(f"Experiment folder created: {exp_folder}")
+
+    # Save experiment params
+    params = {
+        "embed_size": embed_size,
+        "num_layers": num_layers,
+        "batch_size": batch_size,
+        "epochs": epochs,
+        "weight_decay": weight_decay,
+        "gpu": gpu,
+        "use_text_data": use_text_data,
+        "use_poster_data": use_poster_data,
+    }
+    save_params_json(exp_folder, params)
+    print("📝 Saved params.json")
+
+    # Recall CSV logger
+    csv_file, csv_writer = open_recall_csv(exp_folder)
+    print("📄 recall_log.csv created")
+
     user_features = generate_user_features()
     movies_features = generate_movie_features()
 
@@ -74,6 +130,7 @@ def train(embed_size=32,num_layers=3,batch_size=2048,epochs=1000,weight_decay=1e
 
     for step in tqdm(range(epochs)):
         for i,batch in tqdm(enumerate(train_loader)):
+            model.train()
             t0 = time.time()
             user_emb, pos_movie_emb, neg_movie_emb, user_id, pos_movie_id, neg_movie_id = batch
             user_emb, pos_emb, neg_emb = model(user_id, pos_movie_id, neg_movie_id)
@@ -83,21 +140,33 @@ def train(embed_size=32,num_layers=3,batch_size=2048,epochs=1000,weight_decay=1e
             optimizer.zero_grad()
             t3 = time.time()
 
-            if i % 10 == 0:
-                with torch.no_grad():
-                    test_recall =  recall_at_k(NUM_USER,NUM_MOVIE, 20, model, dataset.test_dict)
-                    train_recall = recall_at_k(NUM_USER,NUM_MOVIE, 20, model, dataset.train_dict)
-                    vu,vp,vn = dataset.get_test_pairs()
-                    vuser_emb, vpos_emb, vneg_emb = model(user_id, pos_movie_id, neg_movie_id)
+        with torch.no_grad():
+            test_recall =  recall_at_k(NUM_USER,NUM_MOVIE, 20, model, dataset.test_dict)
+            train_recall = recall_at_k(NUM_USER,NUM_MOVIE, 20, model, dataset.train_dict)
+            vu,vp,vn = dataset.get_test_pairs()
+            vuser_emb, vpos_emb, vneg_emb = model(user_id, pos_movie_id, neg_movie_id)
 
-                    validation_loss = loss_f(vuser_emb,vpos_emb,vneg_emb)
-                    print("===== Results =====")
-                    print(f"Train: {train_recall:.4f}")
-                    print(f"Test : {test_recall:.4f}")
-                    print(f'Train Loss: {loss:.4f}')
-                    print(f'Validation Loss: {validation_loss:.4f}')
-                    print("=============================")
 
+            validation_loss = loss_f(vuser_emb,vpos_emb,vneg_emb)
+
+            csv_writer.writerow([step, train_recall, test_recall, loss,validation_loss])
+
+
+            print("===== Results =====")
+            print(f"Train: {train_recall:.4f}")
+            print(f"Test : {test_recall:.4f}")
+            print(f'Train Loss: {loss:.4f}')
+            print(f'Validation Loss: {validation_loss:.4f}')
+            print("=============================")
+
+        # Save model checkpoint
+        # -----------------------------
+        if (epoch + 1) % save_every == 0:
+            ckpt_path = os.path.join(exp_folder, "model_checkpoints", f"epoch_{epoch+1}.pt")
+            torch.save(model.state_dict(), ckpt_path)
+            print(f"💾 Saved model checkpoint: {ckpt_path}")
+
+    csv_file.close()
 
 
 if __name__ == "__main__":

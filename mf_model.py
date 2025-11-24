@@ -4,7 +4,7 @@ import torch.nn as nn
 import pandas as pd
 import numpy as np
 import torch.nn.functional as F
-from torch_scatter import scatter_mean
+import torch_scatter
 from recall_at_k import recall_at_k
 from torch.nn.utils.rnn import pad_sequence
 
@@ -74,7 +74,7 @@ class MLP_model(nn.Module):
 
         # print(all_item_emb.size(0))
 
-        out = scatter_mean.scatter_add(
+        out = torch_scatter.scatter_mean(
             src=edge_messages,
             index=target,
             dim=0,
@@ -95,7 +95,7 @@ class MLP_model(nn.Module):
         for layer in self.linear_list:
             x = layer(x)
             x = F.relu(x)
-            # x = F.dropout(x,p=0.25, training=self.training)
+            x = F.dropout(x,p=0.25, training=self.training)
 
             saved_user_emb.append(x[:a])
             saved_movie_emb.append(x[a:a+b])
