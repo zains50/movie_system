@@ -4,7 +4,7 @@ import torch.nn as nn
 import pandas as pd
 import numpy as np
 import torch.nn.functional as F
-import torch_scatter
+from torch_scatter import scatter_mean
 from recall_at_k import recall_at_k
 from torch.nn.utils.rnn import pad_sequence
 
@@ -74,7 +74,7 @@ class MLP_model(nn.Module):
 
         # print(all_item_emb.size(0))
 
-        out = torch_scatter.scatter_add(
+        out = scatter_mean.scatter_add(
             src=edge_messages,
             index=target,
             dim=0,
