@@ -42,12 +42,20 @@ class MLP_model(nn.Module):
     def forward(self, user_ids,pos_movie_ids,neg_movie_ids):
         # project movie and user features towards a common domain
 
+        saved_user_emb = []
+        saved_movie_emb = []
+        saved_negative_movie_emb = []
 
         user_emb = self.user_projection(self.user_emb)
         movie_emb = self.movie_projection(self.movie_emb)
 
+
         pos_movies_emb = movie_emb[pos_movie_ids]
         neg_movies_emb = movie_emb[neg_movie_ids]
+
+        saved_user_emb.append((user_emb[user_ids]))
+        saved_movie_emb.append(pos_movies_emb)
+        saved_negative_movie_emb.append(neg_movies_emb)
 
         source_list = []
         target_list = []
@@ -80,16 +88,25 @@ class MLP_model(nn.Module):
         x = torch.cat([user_emb, pos_movies_emb, neg_movies_emb], dim=0)
         # print(x.shape)
 
-        for layer in self.linear_list:
-            x = layer(x)
-            x = F.relu(x)
-            # x = F.dropout(x,p=0.25, training=self.training)
         a = len(user_emb)
         b = len(pos_movies_emb)
         c = len(neg_movies_emb)
 
-        users, pos_movies, neg_movies = x[:a],x[a:a+b],x[a+b:a+b+c]
+        for layer in self.linear_list:
+            x = layer(x)
+            x = F.relu(x)
+            # x = F.dropout(x,p=0.25, training=self.training)
 
+            saved_user_emb.append(x[:a])
+            saved_movie_emb.append(x[a:a+b])
+            saved_negative_movie_emb.append(x[a+b:a+b+c])
+
+        users = torch.mean(torch.stack(saved_user_emb, dim=0),dim=0)
+        pos_movies = torch.mean(torch.stack(saved_movie_emb,dim=0),dim=0)
+        neg_movies = torch.mean(torch.stack(saved_negative_movie_emb,dim=0),dim=0)
+
+        # users, pos_movies, neg_movies = x[:a],x[a:a+b],x[a+b:a+b+c]
+        # neg_movies = x[a+b:a+b+c]
 
         return users, pos_movies, neg_movies
 
