@@ -12,7 +12,11 @@ from recall_at_k import  recall_at_k
 from MovieDataset import MovieDataset
 from torch.utils.data import DataLoader
 
-def train(embed_size=32,num_layers=3,batch_size=2048,epochs=1000,weight_decay=1e-7,use_text_data=True, use_poster_data=True):
+import os
+save_folder = "SAVED_RUNS"
+
+
+def train(embed_size=32,num_layers=3,batch_size=2048,epochs=1000,weight_decay=1e-7,gpu=0,use_text_data=True, use_poster_data=True):
     user_features = generate_user_features()
     movies_features = generate_movie_features()
 
@@ -32,8 +36,8 @@ def train(embed_size=32,num_layers=3,batch_size=2048,epochs=1000,weight_decay=1e
     user_features = user_features.to(torch.float32)
 
     if torch.cuda.is_available():
-        movies_features = movies_features.to("cuda:0")
-        user_features = user_features.to("cuda:0")
+        movies_features = movies_features.to(f"cuda:{gpu}")
+        user_features = user_features.to(f"cuda:{gpu}")
 
     NUM_USER = user_features.size(0)
     NUM_MOVIE = movies_features.size(0)
@@ -57,7 +61,7 @@ def train(embed_size=32,num_layers=3,batch_size=2048,epochs=1000,weight_decay=1e
                       user_feature_size=user_features_dim,movie_emb=movies_features,user_emb=user_features,user_item_dict=dataset.train_dict)
 
     if torch.cuda.is_available():
-        model = model.to("cuda:0")
+        model = model.to(f"cuda:{gpu}")
 
     optimizer = Adam(params=model.parameters(), lr=0.001,weight_decay=weight_decay)
     loss_f = BPRLoss()
@@ -79,16 +83,20 @@ def train(embed_size=32,num_layers=3,batch_size=2048,epochs=1000,weight_decay=1e
             optimizer.zero_grad()
             t3 = time.time()
 
-            print(f'loss: {loss}')
-
             if i % 10 == 0:
-                test_recall =  recall_at_k(NUM_USER,NUM_MOVIE, 20, model, dataset.test_dict)
-                train_recall = recall_at_k(NUM_USER,NUM_MOVIE, 20, model, dataset.train_dict)
-                print("===== Results =====")
-                print(f"Train: {train_recall:.4f}")
-                print(f"Test : {test_recall:.4f}")
-                print(f'Train Loss: {loss:.4f}')
-                print("=============================")
+                with torch.no_grad():
+                    test_recall =  recall_at_k(NUM_USER,NUM_MOVIE, 20, model, dataset.test_dict)
+                    train_recall = recall_at_k(NUM_USER,NUM_MOVIE, 20, model, dataset.train_dict)
+                    vu,vp,vn = dataset.get_test_pairs()
+                    vuser_emb, vpos_emb, vneg_emb = model(user_id, pos_movie_id, neg_movie_id)
+
+                    validation_loss = loss_f(vuser_emb,vpos_emb,vneg_emb)
+                    print("===== Results =====")
+                    print(f"Train: {train_recall:.4f}")
+                    print(f"Test : {test_recall:.4f}")
+                    print(f'Train Loss: {loss:.4f}')
+                    print(f'Validation Loss: {validation_loss:.4f}')
+                    print("=============================")
 
 
 
