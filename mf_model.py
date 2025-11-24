@@ -25,7 +25,8 @@ class MLP_model(nn.Module):
         super().__init__()
         # num_layers , such as 4
         assert  num_layers == len(layer_dims)
-        self.linear_list = nn.ModuleList([])
+        self.linear_list_user = nn.ModuleList([])
+        self.linear_list_movie = nn.ModuleList([])
 
         self.movie_emb = movie_emb
         self.user_emb = user_emb
@@ -33,7 +34,12 @@ class MLP_model(nn.Module):
 
         for i in range(num_layers - 1):
             layer = MLP_layer(layer_dims[i], layer_dims[i + 1])
-            self.linear_list.append(layer)
+            self.linear_list_user.append(layer)
+            print(f'created layer: {i} : {layer.linear.weight.shape}')
+
+        for i in range(num_layers - 1):
+            layer = MLP_layer(layer_dims[i], layer_dims[i + 1])
+            self.linear_list_movie.append(layer)
             print(f'created layer: {i} : {layer.linear.weight.shape}')
 
         self.movie_projection = nn.Linear(movie_feature_size,layer_dims[0])
@@ -46,14 +52,14 @@ class MLP_model(nn.Module):
         saved_movie_emb = []
         saved_negative_movie_emb = []
 
-        user_emb = self.user_projection(self.user_emb)
-        movie_emb = self.movie_projection(self.movie_emb)
+        user_emb = F.relu(self.user_projection(self.user_emb))
+        movie_emb = F.relu(self.movie_projection(self.movie_emb))
 
-
+        batch_user_emb = user_emb[user_ids]
         pos_movies_emb = movie_emb[pos_movie_ids]
         neg_movies_emb = movie_emb[neg_movie_ids]
 
-        saved_user_emb.append((user_emb[user_ids]))
+        saved_user_emb.append(batch_user_emb)
         saved_movie_emb.append(pos_movies_emb)
         saved_negative_movie_emb.append(neg_movies_emb)
 
@@ -72,7 +78,6 @@ class MLP_model(nn.Module):
         all_item_emb = torch.cat([user_emb,movie_emb])
         edge_messages = all_item_emb[source]     # (num_edges, feat_dim)
 
-        # print(all_item_emb.size(0))
 
         out = torch_scatter.scatter_mean(
             src=edge_messages,
@@ -80,33 +85,28 @@ class MLP_model(nn.Module):
             dim=0,
             dim_size=all_item_emb.size(0)
         )
-        # print(user_emb)
 
-        user_emb = out[user_ids]
-        # print(user_emb)
+        batch_user_emb = out[user_ids]
 
-        x = torch.cat([user_emb, pos_movies_emb, neg_movies_emb], dim=0)
-        # print(x.shape)
+        for layer in self.linear_list_user:
+            batch_user_emb = layer(batch_user_emb)
+            batch_user_emb = F.relu(batch_user_emb)
 
-        a = len(user_emb)
-        b = len(pos_movies_emb)
-        c = len(neg_movies_emb)
+            saved_user_emb.append(batch_user_emb)
 
-        for layer in self.linear_list:
-            x = layer(x)
-            x = F.relu(x)
-            x = F.dropout(x,p=0.25, training=self.training)
+        for layer in self.linear_list_movie:
+            pos_movies_emb  = layer(pos_movies_emb)
+            neg_movies_emb  = layer(neg_movies_emb)
 
-            saved_user_emb.append(x[:a])
-            saved_movie_emb.append(x[a:a+b])
-            saved_negative_movie_emb.append(x[a+b:a+b+c])
+            pos_movies_emb   = F.relu(pos_movies_emb)
+            neg_movies_emb  = F.relu(neg_movies_emb)
+
+            saved_movie_emb.append(pos_movies_emb)
+            saved_negative_movie_emb.append(neg_movies_emb)
 
         users = torch.mean(torch.stack(saved_user_emb, dim=0),dim=0)
         pos_movies = torch.mean(torch.stack(saved_movie_emb,dim=0),dim=0)
         neg_movies = torch.mean(torch.stack(saved_negative_movie_emb,dim=0),dim=0)
-
-        # users, pos_movies, neg_movies = x[:a],x[a:a+b],x[a+b:a+b+c]
-        # neg_movies = x[a+b:a+b+c]
 
         return users, pos_movies, neg_movies
 

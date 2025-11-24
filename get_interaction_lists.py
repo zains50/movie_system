@@ -25,6 +25,10 @@ def get_user_item_list_test_train(train_proportion=0.8):
     for user, movies in user_item_dict.items():
         user_list = torch.tensor([user] * len(movies))
         p = int(train_proportion * len(movies))
+
+        perm = torch.randperm(len(movies))
+        movies = movies[perm]
+
         movies = torch.tensor(movies)
         user_interactions_train = torch.cat((user_interactions_train,user_list[:p]))
         movie_interactions_train = torch.cat((movie_interactions_train,movies[:p]))

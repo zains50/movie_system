@@ -1,0 +1,10 @@
+{
+    "embed_size": 64,
+    "num_layers": 4,
+    "batch_size": 2048,
+    "epochs": 1000,
+    "weight_decay": 1e-06,
+    "gpu": 0,
+    "use_text_data": false,
+    "use_poster_data": false
+}

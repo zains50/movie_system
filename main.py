@@ -50,7 +50,7 @@ def open_recall_csv(folder):
 
 
 
-def train(embed_size=256,num_layers=4,batch_size=2048,epochs=1000,weight_decay=1e-4,gpu=0,save_every=5,use_text_data=True, use_poster_data=True):
+def train(embed_size=64,num_layers=4,batch_size=2048,epochs=1000,weight_decay=1e-6,gpu=0,save_every=5,use_text_data=False, use_poster_data=False):
 
     exp_folder = create_experiment_folder()
     print(f"Experiment folder created: {exp_folder}")
@@ -140,29 +140,30 @@ def train(embed_size=256,num_layers=4,batch_size=2048,epochs=1000,weight_decay=1
             optimizer.zero_grad()
             t3 = time.time()
 
-        with torch.no_grad():
-            test_recall =  recall_at_k(NUM_USER,NUM_MOVIE, 20, model, dataset.test_dict)
-            train_recall = recall_at_k(NUM_USER,NUM_MOVIE, 20, model, dataset.train_dict)
-            vu,vp,vn = dataset.get_test_pairs()
-            vuser_emb, vpos_emb, vneg_emb = model(user_id, pos_movie_id, neg_movie_id)
+            if i % 5 == 0:
+                with torch.no_grad():
+                    test_recall =  recall_at_k(NUM_USER,NUM_MOVIE, 20, model, dataset.test_dict)
+                    train_recall = recall_at_k(NUM_USER,NUM_MOVIE, 20, model, dataset.train_dict)
+                    vu,vp,vn = dataset.get_test_pairs()
+                    vuser_emb, vpos_emb, vneg_emb = model(user_id, pos_movie_id, neg_movie_id)
 
 
-            validation_loss = loss_f(vuser_emb,vpos_emb,vneg_emb)
+                    validation_loss = loss_f(vuser_emb,vpos_emb,vneg_emb)
 
-            csv_writer.writerow([step, train_recall, test_recall, loss,validation_loss])
+                    csv_writer.writerow([step, train_recall, test_recall, loss,validation_loss])
 
 
-            print("===== Results =====")
-            print(f"Train: {train_recall:.4f}")
-            print(f"Test : {test_recall:.4f}")
-            print(f'Train Loss: {loss:.4f}')
-            print(f'Validation Loss: {validation_loss:.4f}')
-            print("=============================")
+                    print("===== Results =====")
+                    print(f"Train: {train_recall:.4f}")
+                    print(f"Test : {test_recall:.4f}")
+                    print(f'Train Loss: {loss:.4f}')
+                    print(f'Validation Loss: {validation_loss:.4f}')
+                    print("=============================")
 
         # Save model checkpoint
         # -----------------------------
-        if (epoch + 1) % save_every == 0:
-            ckpt_path = os.path.join(exp_folder, "model_checkpoints", f"epoch_{epoch+1}.pt")
+        if (step + 1) % save_every == 0:
+            ckpt_path = os.path.join(exp_folder, "model_checkpoints", f"epoch_{step+1}.pt")
             torch.save(model.state_dict(), ckpt_path)
             print(f"💾 Saved model checkpoint: {ckpt_path}")
 
