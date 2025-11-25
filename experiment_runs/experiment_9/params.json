@@ -1,10 +1,11 @@
 {
-    "embed_size": 32,
-    "num_layers": 4,
-    "batch_size": 2048,
-    "epochs": 1000,
-    "weight_decay": 0.0001,
+    "embed_size": 512,
+    "num_layers": 2,
+    "batch_size": 1048,
+    "epochs": 500,
+    "weight_decay": 1e-05,
     "gpu": 0,
-    "use_text_data": false,
-    "use_poster_data": false
+    "use_text_data": true,
+    "use_poster_data": true,
+    "learning rate": 0.001
 }

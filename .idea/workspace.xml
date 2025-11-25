@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a600644b-54d2-47f7-9fba-3868c1282d7a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MovieDataset.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/advanced_movie_features/before_2000/confirmation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/advanced_movie_features/before_2000/poster_embeddings.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/advanced_movie_features/before_2000/summary_embeddings.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/main1_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bpr_loss.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_extraction.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_mining_code/data_check.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_mining_code/fetch_movie_info_omdb.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_1/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_1/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_10/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_10/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_11/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_11/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_12/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_12/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_13/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_13/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_14/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_14/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_15/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_15/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_16/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_16/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_17/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_17/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_18/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_18/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_2/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_2/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_3/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_3/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_4/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_4/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_5/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_5/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_6/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_6/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_7/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_7/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_8/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_8/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_9/params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_9/recall_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_advanced_user_movie_features.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_interaction_lists.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_user_item_dict.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_user_movie_features.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_file/movies_omdb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_file/movies_omdb_1_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mf_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml-1m/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml-1m/movie_filler.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml-1m/movies.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml-1m/movies_MISSING.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml-1m/rate.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml-1m/users.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies_after_2000/IMDB Movies 2000 - 2020.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies_after_2000/data_mine.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies_after_2000/imdb_movies.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recall_at_k.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/search_engine/search_engine.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="ryanbprloss" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="groupByToolId" value="true" />
+    <option name="selectedTabId" value="CurrentFile" />
+    <option name="showPreview" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="34xIK8POgscJWOn8QWsK4q12BvF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.a.executor": "Run",
+    "Python.bpr_loss_test_case.executor": "Run",
+    "Python.bruh.executor": "Run",
+    "Python.check.executor": "Run",
+    "Python.confirmation.executor": "Run",
+    "Python.data_extraction.executor": "Run",
+    "Python.data_mine.executor": "Run",
+    "Python.examine.executor": "Run",
+    "Python.extra_movie_information.executor": "Run",
+    "Python.get_advanced_user_movie_features.executor": "Run",
+    "Python.get_interaction_lists.executor": "Run",
+    "Python.get_movie_powers.executor": "Run",
+    "Python.get_movie_user_features.executor": "Run",
+    "Python.get_user_item_dict.executor": "Run",
+    "Python.get_user_movie_features.executor": "Run",
+    "Python.imbd_api.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.math_language.executor": "Run",
+    "Python.mf_model.executor": "Run",
+    "Python.movie_filler.executor": "Run",
+    "Python.search_engine.executor": "Run",
+    "Python.search_model.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.mappings": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.symlinks": "true",
+    "WebServerToolWindowPanel.toolwindow.show.date": "false",
+    "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
+    "WebServerToolWindowPanel.toolwindow.show.size": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/zainm/.personal/School/Year_3/CSCI4050U/final_project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.tabs",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\zainm\.personal\School\Year_3\CSCI4050U\final_project" />
+      <recent name="C:\Users\zainm\.personal\School\Year_3\CSCI4050U\final_project\ml-1m" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zainm\.personal\School\Year_3\CSCI4050U\final_project\search_engine" />
+      <recent name="C:\Users\zainm\.personal\School\Year_3\CSCI4050U\final_project\data_mining_code" />
+      <recent name="C:\Users\zainm\.personal\School\Year_3\CSCI4050U\final_project" />
+      <recent name="C:\Users\zainm\.personal\School\Year_3\CSCI4050U\final_project\movies.txt" />
+      <recent name="C:\Users\zainm\.personal\School\Year_3\CSCI4050U\final_project\ml-1m" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="get_user_item_dict" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="final_project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/get_user_item_dict.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="final_project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.get_user_item_dict" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-PY-243.23654.177" />
+        <option value="bundled-python-sdk-91d3a02ef49d-43b77aa2d136-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.23654.177" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a600644b-54d2-47f7-9fba-3868c1282d7a" name="Changes" comment="" />
+      <created>1762148729406</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1762148729406</updated>
+      <workItem from="1762148730987" duration="22921000" />
+      <workItem from="1762291386932" duration="12254000" />
+      <workItem from="1762388562016" duration="5239000" />
+      <workItem from="1762652323380" duration="3220000" />
+      <workItem from="1762656059513" duration="12816000" />
+      <workItem from="1762732909675" duration="1015000" />
+      <workItem from="1762750386027" duration="6178000" />
+      <workItem from="1762825944214" duration="22712000" />
+      <workItem from="1762873705693" duration="16931000" />
+      <workItem from="1762973738319" duration="167000" />
+      <workItem from="1763076930030" duration="3086000" />
+      <workItem from="1763136100559" duration="3181000" />
+      <workItem from="1763410618466" duration="790000" />
+      <workItem from="1763573427302" duration="4831000" />
+      <workItem from="1763747781819" duration="45412000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/final_project$main.coverage" NAME="main Coverage Results" MODIFIED="1764009046560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$math_language.coverage" NAME="math_language Coverage Results" MODIFIED="1762214338762" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$get_interaction_lists.coverage" NAME="get_interaction_lists Coverage Results" MODIFIED="1762886254839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$extra_movie_information.coverage" NAME="extra_movie_information Coverage Results" MODIFIED="1762665088313" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$confirmation.coverage" NAME="confirmation Coverage Results" MODIFIED="1763936374086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/advanced_movie_features/before_2000" />
+    <SUITE FILE_PATH="coverage/final_project$imbd_api.coverage" NAME="imbd_api Coverage Results" MODIFIED="1762662928290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$check.coverage" NAME="check Coverage Results" MODIFIED="1762678717106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$a.coverage" NAME="a Coverage Results" MODIFIED="1763582768428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$get_movie_user_features.coverage" NAME="get_movie_user_features Coverage Results" MODIFIED="1762382841308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$search_engine.coverage" NAME="search_engine Coverage Results" MODIFIED="1762876504244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$get_movie_powers.coverage" NAME="get_movie_powers Coverage Results" MODIFIED="1762270852771" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$data_extraction.coverage" NAME="data_extraction Coverage Results" MODIFIED="1762150406060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$movie_filler.coverage" NAME="movie_filler Coverage Results" MODIFIED="1762840622657" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml-1m" />
+    <SUITE FILE_PATH="coverage/final_project$examine.coverage" NAME="examine Coverage Results" MODIFIED="1762669336666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$get_user_movie_features.coverage" NAME="get_user_movie_features Coverage Results" MODIFIED="1762831532996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$bpr_loss_test_case.coverage" NAME="bpr_loss_test_case Coverage Results" MODIFIED="1762820060170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$data_mine.coverage" NAME="data_mine Coverage Results" MODIFIED="1762671646797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/movies_after_200" />
+    <SUITE FILE_PATH="coverage/final_project$bruh.coverage" NAME="bruh Coverage Results" MODIFIED="1762837189989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml-1m" />
+    <SUITE FILE_PATH="coverage/final_project$search_model.coverage" NAME="search_model Coverage Results" MODIFIED="1762375772456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$mf_model.coverage" NAME="mf_model Coverage Results" MODIFIED="1763953352437" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$get_user_item_dict.coverage" NAME="get_user_item_dict Coverage Results" MODIFIED="1762840689301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/final_project$get_advanced_user_movie_features.coverage" NAME="get_advanced_user_movie_features Coverage Results" MODIFIED="1763955249038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
