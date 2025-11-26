@@ -5,71 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a600644b-54d2-47f7-9fba-3868c1282d7a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MovieDataset.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/advanced_movie_features/before_2000/confirmation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/advanced_movie_features/before_2000/poster_embeddings.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/advanced_movie_features/before_2000/summary_embeddings.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive/main1_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bpr_loss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_extraction.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_mining_code/data_check.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_mining_code/fetch_movie_info_omdb.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_1/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_1/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_10/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_10/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_11/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_11/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_12/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_12/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_13/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_13/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_14/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_14/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_15/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_15/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_16/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_16/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_17/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_17/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_18/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_18/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_2/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_2/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_3/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_3/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_4/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_4/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_5/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_5/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_6/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_6/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_7/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_7/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_8/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_8/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_9/params.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_runs/experiment_9/recall_log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_advanced_user_movie_features.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_interaction_lists.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_user_item_dict.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_user_movie_features.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/json_file/movies_omdb.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/json_file/movies_omdb_1_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mf_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml-1m/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml-1m/movie_filler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml-1m/movies.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml-1m/movies_MISSING.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml-1m/rate.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml-1m/users.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movies_after_2000/IMDB Movies 2000 - 2020.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movies_after_2000/data_mine.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movies_after_2000/imdb_movies.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/recall_at_k.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/search_engine/search_engine.py" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model_Examination/load_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ML_Training/archive/main1_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ML_Training/data_mining_code/fetch_movie_info_omdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/ML_Training/data_mining_code/fetch_movie_info_omdb.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,63 +43,63 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.a.executor": "Run",
-    "Python.bpr_loss_test_case.executor": "Run",
-    "Python.bruh.executor": "Run",
-    "Python.check.executor": "Run",
-    "Python.confirmation.executor": "Run",
-    "Python.data_extraction.executor": "Run",
-    "Python.data_mine.executor": "Run",
-    "Python.examine.executor": "Run",
-    "Python.extra_movie_information.executor": "Run",
-    "Python.get_advanced_user_movie_features.executor": "Run",
-    "Python.get_interaction_lists.executor": "Run",
-    "Python.get_movie_powers.executor": "Run",
-    "Python.get_movie_user_features.executor": "Run",
-    "Python.get_user_item_dict.executor": "Run",
-    "Python.get_user_movie_features.executor": "Run",
-    "Python.imbd_api.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.math_language.executor": "Run",
-    "Python.mf_model.executor": "Run",
-    "Python.movie_filler.executor": "Run",
-    "Python.search_engine.executor": "Run",
-    "Python.search_model.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowPanel.toolwindow.highlight.mappings": "true",
-    "WebServerToolWindowPanel.toolwindow.highlight.symlinks": "true",
-    "WebServerToolWindowPanel.toolwindow.show.date": "false",
-    "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
-    "WebServerToolWindowPanel.toolwindow.show.size": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/zainm/.personal/School/Year_3/CSCI4050U/final_project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.tabs",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.a.executor&quot;: &quot;Run&quot;,
+    &quot;Python.bpr_loss_test_case.executor&quot;: &quot;Run&quot;,
+    &quot;Python.bruh.executor&quot;: &quot;Run&quot;,
+    &quot;Python.check.executor&quot;: &quot;Run&quot;,
+    &quot;Python.confirmation.executor&quot;: &quot;Run&quot;,
+    &quot;Python.data_extraction.executor&quot;: &quot;Run&quot;,
+    &quot;Python.data_mine.executor&quot;: &quot;Run&quot;,
+    &quot;Python.examine.executor&quot;: &quot;Run&quot;,
+    &quot;Python.extra_movie_information.executor&quot;: &quot;Run&quot;,
+    &quot;Python.get_advanced_user_movie_features.executor&quot;: &quot;Run&quot;,
+    &quot;Python.get_interaction_lists.executor&quot;: &quot;Run&quot;,
+    &quot;Python.get_movie_powers.executor&quot;: &quot;Run&quot;,
+    &quot;Python.get_movie_user_features.executor&quot;: &quot;Run&quot;,
+    &quot;Python.get_user_item_dict.executor&quot;: &quot;Run&quot;,
+    &quot;Python.get_user_movie_features.executor&quot;: &quot;Run&quot;,
+    &quot;Python.imbd_api.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.math_language.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mf_model.executor&quot;: &quot;Run&quot;,
+    &quot;Python.movie_filler.executor&quot;: &quot;Run&quot;,
+    &quot;Python.search_engine.executor&quot;: &quot;Run&quot;,
+    &quot;Python.search_model.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.mappings&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.symlinks&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.date&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/zainm/.personal/School/Year_3/CSCI4050U/final_project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\zainm\.personal\School\Year_3\CSCI4050U\final_project" />
       <recent name="C:\Users\zainm\.personal\School\Year_3\CSCI4050U\final_project\ml-1m" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zainm\.personal\School\Year_3\CSCI4050U\final_project\Machine_Learning_Model_Training" />
       <recent name="C:\Users\zainm\.personal\School\Year_3\CSCI4050U\final_project\search_engine" />
       <recent name="C:\Users\zainm\.personal\School\Year_3\CSCI4050U\final_project\data_mining_code" />
       <recent name="C:\Users\zainm\.personal\School\Year_3\CSCI4050U\final_project" />
       <recent name="C:\Users\zainm\.personal\School\Year_3\CSCI4050U\final_project\movies.txt" />
-      <recent name="C:\Users\zainm\.personal\School\Year_3\CSCI4050U\final_project\ml-1m" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main">
     <configuration name="get_user_item_dict" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="final_project" />
       <option name="ENV_FILES" value="" />
@@ -243,7 +182,7 @@
       <workItem from="1763136100559" duration="3181000" />
       <workItem from="1763410618466" duration="790000" />
       <workItem from="1763573427302" duration="4831000" />
-      <workItem from="1763747781819" duration="45412000" />
+      <workItem from="1763747781819" duration="47621000" />
     </task>
     <servers />
   </component>

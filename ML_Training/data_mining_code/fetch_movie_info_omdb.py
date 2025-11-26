@@ -1,5 +1,5 @@
 import tmdbsimple as tmdb
-from data_extraction import get_movies_numpy
+from ..data_extraction import get_movies_numpy
 import requests
 import os
 import json
