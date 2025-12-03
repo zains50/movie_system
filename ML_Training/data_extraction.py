@@ -3,7 +3,7 @@ import pandas as pd
 import os
 from pathlib import Path
 
-DIR = "ml-1m/"
+DIR = "ML_Training\\ml-1m"
 MOVIES = "movies.txt"
 RATINGS = "rate.txt"
 USERS = "users.txt"
@@ -16,9 +16,9 @@ def get_all_features_numpy():
         movies_arr,ratings_arr,users_arr = pd.read_pickle(pickle_path)
     else:
         print("Reading Raw Data")
-        movies_arr = pd.read_csv(DIR + MOVIES, sep="::", engine="python", encoding="latin1").to_numpy()
-        ratings_arr = pd.read_csv(DIR + RATINGS,delimiter="::",engine="python").to_numpy()
-        users_arr = pd.read_csv(DIR + USERS,delimiter="::",engine="python").to_numpy()
+        movies_arr = pd.read_csv(f"{DIR}\\{MOVIES}", sep="::", engine="python", encoding="latin1").to_numpy()
+        ratings_arr = pd.read_csv(f"{DIR}\\{RATINGS}",delimiter="::",engine="python").to_numpy()
+        users_arr = pd.read_csv(f"{DIR}\\{USERS}",delimiter="::",engine="python").to_numpy()
         all_arrays = (movies_arr,ratings_arr,users_arr)
         pickle_path.parent.mkdir(parents = True, exist_ok = True)
         pd.to_pickle(all_arrays, pickle_path)
