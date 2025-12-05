@@ -1,11 +1,34 @@
-from sklearn.model_selection import train_test_split
 
-from get_user_item_dict import get_user_item_dict
 import torch
 import os
 
-user_item_dict = get_user_item_dict()
+from get_preprocessed_features import get_all_features_numpy
+
+
+
+def get_user_item_dict():
+    # print(users_arr.shape) -> (6040, 5)
+    # print(ratings_arr.shape) -> (1000208, 4)
+
+    movies_arr, ratings_arr, users_arr = get_all_features_numpy()
+
+    num_users = len(users_arr)
+    user_item_dict = {}
+
+    # go through all users
+    for i in range(num_users):
+        user_ratings = ratings_arr[ratings_arr[:,0] == i+1] # creates a list of all the movies the user has watched
+        item_arr = user_ratings[:,1]
+        user_item_dict[i] = item_arr-1
+    return user_item_dict
+
+
+
+
+
 def get_user_item_interaction_list():
+    user_item_dict = get_user_item_dict()
+
     all_user_interactions = torch.tensor([])
     all_movie_interactions = torch.tensor([])
 
@@ -18,6 +41,7 @@ def get_user_item_interaction_list():
 
 
 def get_user_item_list_test_train(train_proportion=0.8):
+    user_item_dict = get_user_item_dict()
 
     folder = "train_test_split"
     os.makedirs(folder, exist_ok=True)

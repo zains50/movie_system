@@ -1,22 +1,23 @@
 import torch
-from mf_model import MLP_model
-import numpy as np
 from torch.optim import Adam
-from get_user_movie_features import generate_movie_features, generate_user_features
-# from get_user_item_dict import get_user_item_dict
-from bpr_loss import BPRLoss
-from tqdm import  tqdm
-import time
-import matplotlib.pyplot as plt
-from recall_at_k import  recall_at_k
-from MovieDataset import MovieDataset
 from torch.utils.data import DataLoader
-import json
-import csv
-import pandas as pd
 
 
 import os
+import csv
+import time
+import json
+import numpy as np
+import pandas as pd
+from tqdm import  tqdm
+
+from bpr_loss import BPRLoss
+from mf_model import MLP_model
+from recall_at_k import  recall_at_k
+from MovieDataset import MovieDataset
+from get_user_movie_features import generate_movie_features, generate_user_features
+
+
 save_folder = "SAVED_RUNS"
 
 def create_experiment_folder(base="experiment_runs"):
@@ -171,15 +172,13 @@ def train(embed_size=256,num_layers=2,batch_size=1048,epochs=100,lr=1e-4,weight_
             print("=============================")
 
         # Save model checkpoint
-        # -----------------------------
         if (step) % save_every == 0:
             ckpt_path = os.path.join(exp_folder, "model_checkpoints", f"epoch_{step}.pt")
             torch.save(model.state_dict(), ckpt_path)
-            print(f"💾 Saved model checkpoint: {ckpt_path}")
+            print(f"Saved model checkpoint: {ckpt_path}")
 
 
 
 if __name__ == "__main__":
-    # Only code inside this block runs safely with Windows multiprocessing
     torch.multiprocessing.set_start_method('spawn', force=True)  # optional, ensures spawn method
-    train()
+    train(embed_size=256,num_layers=2,batch_size=1048,epochs=100,lr=1e-4,weight_decay=5e-4,gpu=0,save_every=2,use_text_data=True, use_poster_data=True)
