@@ -1,6 +1,6 @@
 from lxml.html.builder import EMBED
 
-from data_extraction import  get_all_features_numpy
+from get_preprocessed_features import  get_all_features_numpy
 import json
 import requests
 import os
@@ -11,9 +11,9 @@ from sentence_transformers import  SentenceTransformer
 from PIL import Image
 import torch
 
-movies_arr, ratings_arr, users_arr = get_all_features_numpy()
 
 def get_omdb_movie_dict_list():
+    movies_arr, ratings_arr, users_arr = get_all_features_numpy()
     print(movies_arr)
     print(movies_arr.shape)
     file = "json_file/movies_omdb_1_1.json"
@@ -138,20 +138,3 @@ def encodeImages(movie_poster_files):
 
     return np.vstack(embeddings)
 
-movie_poster_files = get_movie_file_names("movie_posters")
-# print(len(movie_poster_files))
-movie_summary_files = get_movie_title_and_summary_list()
-
-
-for x, y ,z in zip(movies_arr, movie_summary_files,movie_poster_files):
-    print(x, y,z)
-
-
-# print(movie_summary_files)
-# print(movi)
-
-# poster_encodings = encodeImages(movie_poster_files)
-# summary_embeddings = encodeText(movie_summary_files)
-
-# np.save("advanced_movie_features/before_2000/poster_embeddings.npy",poster_encodings)
-# np.save("advanced_movie_features/before_2000/summary_embeddings.npy",summary_embeddings)
