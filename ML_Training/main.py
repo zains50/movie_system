@@ -12,10 +12,8 @@ import pandas as pd
 from tqdm import  tqdm
 
 from bpr_loss import BPRLoss
-from get_feature_encoder import MLP_model
 from recall_at_k import  recall_at_k
 from MovieDataset import MovieDataset
-from get_processed_features import generate_movie_features, generate_user_features
 
 
 save_folder = "SAVED_RUNS"

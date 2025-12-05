@@ -41,4 +41,3 @@ def recall_at_k(num_user,num_item, K, model, test_dict, batches=5):
 
     # Average recall over all users
     return sum(recalls) / len(recalls)
-
