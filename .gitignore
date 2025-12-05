@@ -1,7 +1,7 @@
 #DO NOT COMMIT APIKEY.ENV
 *.env
-ML_Training/ml-1m/user_features.npy
-ML_Training/ml-1m/movie_features.npy
+ML_Training/ml-1m/*.npy
+
 movie_posters
 movie_arrays/arrays.pkl
 
