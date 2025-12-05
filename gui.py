@@ -9,7 +9,8 @@ import customtkinter as ctk
 MOVIES_BEFORE_PATH = "Model_Deployment\\movie_information\\movies_before_2000\\movies_before_2000.json"
 MOVIES_AFTER_PATH = "Model_Deployment\\movie_information\\movies_after_2000\\movies_after_2000.json"
 POSTER_DIR = "movie_posters/"
-PLACEHOLDER_PATH = "notavailableplaceholder.png"
+PLACEHOLDER_PATH = "assets\\notavailableplaceholder.png"
+WATCHED_LIST_PATH = "watched_movies.txt"
 
 class MovieViewModel:
     def __init__(self):
@@ -41,7 +42,7 @@ class MovieViewModel:
     # download posters from dataset
     def download_all_posters(self):
         # iterate through movie objects in the movies_json list
-        for movie in self.movies_json:
+        for movie in self.movies_json[:500]:
             title = movie.get("Title")
             poster_url = movie.get("Poster")
 
@@ -86,7 +87,7 @@ class MovieViewModel:
             # create a path from the title - if the path doesnt exist, replace the image with a placeholder image
             path = self.get_poster_path(title)
             if not path or not os.path.exists(path):
-                path = "notavailableplaceholder.png"
+                path = PLACEHOLDER_PATH
 
             # Create the image from the path
             img = Image.open(path).resize((200,300))
@@ -98,11 +99,103 @@ class MovieViewModel:
 
 # APP DEFINITION
 class MovieApp(ctk.CTk):
+    # method to get a set of movies the user has watched
+    def load_watched_movies(self):
+        try:
+            with open(WATCHED_LIST_PATH, "r", encoding="utf-8") as f:
+                content = f.read().strip(",")
+                return set([t for t in content.split(",") if t.strip()]) # return the content of the file as a set, if the file exists
+        except:
+            return set() # file doesnt exist - take no content 
+
+
+    # method to add movie to watched list
+    def mark_movie_watched(self, title, button):
+        watched = self.load_watched_movies() # get the set of watched movies
+        if title not in watched: # if the movie hasnt been watched already add it to the set
+            watched.add(title)
+
+        # add the rewrite the file with the updated set of movies the user has watched
+        with open(WATCHED_LIST_PATH, "w", encoding="utf-8") as f:
+            f.write(",".join(watched)+",")
+
+        # change the button to "remove from watched list"
+        button.configure(text="Click to mark as unwatched", command=lambda t=title, b=button: self.remove_watched(t,b))
+
+    # method to remove movie from watched list
+    def remove_watched(self, title, button):
+        watched = self.load_watched_movies() # get the set of watched movies
+        if title in watched: # if the user has watched the movie, remove it from the set
+            watched.remove(title)
+
+        with open(WATCHED_LIST_PATH, "w", encoding="utf-8") as f: # rewrite the file with the updated set
+            if watched:
+                f.write(",".join(watched)+",")
+            else:
+                f.write("")
+
+        #reconfigure the button to add the movie as watched
+        button.configure(text="Click to mark as watched", command=lambda t=title, b=button: self.mark_movie_watched(t,b))
+
+    # method to populate tab with a given list of movies
+    def populate_tab_with_movies(self, parent_frame, movie_list):
+        i=0
+        j=0
+        watched_set = self.load_watched_movies()
+        for title, _ in movie_list:
+            # create a frame to put the name and image into
+            frame = ctk.CTkFrame(parent_frame, width=200, height=360)
+            frame.grid(row=i, column=j, padx=10, pady=10, sticky="n")
+            frame.grid_propagate(False)
+
+            # get poster from cache
+            poster_img = self.view_model.get_poster_image(title)
+
+            # if the image exists put it in a label within the frame along with a button to mark it as watched
+            if poster_img:
+                ctk.CTkLabel(frame, image=poster_img, text="").pack(side="top", padx=10)
+                if title in watched_set:
+                    # if the movie hasnt been watched add it with the remove from watched button
+                    watched_button = ctk.CTkButton(frame, text="Remove from watched list", width=150)
+                    watched_button.pack(pady=(0, 10))
+                    watched_button.configure(command=lambda t=title, b=watched_button: self.unmark_movie_watched(t, b))
+                else:
+                    # if the movie hasnt been watched add it with the add to watched button
+                    watched_button = ctk.CTkButton(frame, text="Click to mark as watched", width=150)
+                    watched_button.pack(pady=(0, 10))
+                    watched_button.configure(command=lambda t=title, b=watched_button: self.mark_movie_watched(t, b))
+
+            # pack the frame into the given parent frame
+            ctk.CTkLabel(frame, text=title, font=("Arial", 14), justify="center", wraplength=200).pack()
+            # increment counters for the next movie to be placed
+            j+=1
+            if j >= 4:
+                j=0
+                i+=1
+            watched_button.configure(command=lambda t=title, b=watched_button: self.mark_movie_watched(t, b))
+
+    # CREATES A LIST OF TUPLES CORRESPONDING TO MOVIES MATCHING THE SEARCH PARAMETER
+    def search_movies(self, search_parameter):
+        search_parameter = search_parameter.lower().strip()
+        if not search_parameter:
+            return self.view_model.movie_list[:500]
+        return [(title,poster) for title, poster in self.view_model.movie_list if search_parameter in title.lower()]
+    
+    # 
+    def on_search(self, event=None):
+        search_parameter = self.searchbar.get()
+        matches = self.search_movies(search_parameter)
+
+        for i in self.movies_display.winfo_children():
+            i.destroy()
+        
+        self.populate_tab_with_movies(self.movies_display, matches)
+
     def __init__(self):
         super().__init__()
         self.view_model = MovieViewModel()
         self.title("Movie Recommendation System")
-        self.geometry("1100x700")
+        self.geometry("1000x700")
 
         # tabs
         self.tabs = ctk.CTkTabview(self)
@@ -112,33 +205,6 @@ class MovieApp(ctk.CTk):
         user_tab = self.tabs.add("User Info")
         movies_tab = self.tabs.add("Movies")
         final_tab = self.tabs.add("Final List")
-
-        # method to fill a tab with movies
-        def populate_tab_with_movies(self, parent_frame, movie_list):
-            for i in movie_list:
-                # collect title and path to poster
-                title = i[0]
-
-                # create a frame to put the name and image into
-                frame = ctk.CTkFrame(parent_frame)
-                frame.pack(fill="x", padx=20, pady=10)
-
-                # get poster from cache
-                poster_img = self.view_model.get_poster_image(title)
-
-                # if the image exists put it in a label within the frame
-                if poster_img:
-                    ctk.CTkLabel(frame, image=poster_img, text="").pack(side="left", padx=10)
-
-                # put the title in a label within the same frame and pack it into the window
-                ctk.CTkLabel(
-                    frame,
-                    text=title,
-                    font=("Arial", 18, "bold"),
-                    justify="left",
-                    wraplength=700
-                ).pack(side="left", anchor="w", padx=15)
-
         
         # HOME TAB
         ctk.CTkLabel(home, text="Movie Recommendation System\nZain Syed, Ryan Coones, Naufil Ansari", font=("Arial", 20)).pack(pady=20)
@@ -166,11 +232,24 @@ class MovieApp(ctk.CTk):
         ctk.CTkOptionMenu(user_tab, values=["Male","Female"]).pack(pady=5)
 
         # MOVIES TAB
-        scroll = ctk.CTkScrollableFrame(movies_tab)
-        scroll.pack(fill="both", expand=True)
-        populate_tab_with_movies(self, parent_frame=scroll, movie_list=self.view_model.movie_list[:400])
-        
+        searchFrame = ctk.CTkFrame(movies_tab,height=15)
+        searchFrame.pack(side="top")
 
+        #search icon
+        searchimg = Image.open("assets\\searchicon.png")
+        ctksearchimg = ctk.CTkImage(light_image=searchimg, dark_image=searchimg)
+        ctk.CTkLabel(searchFrame, image=ctksearchimg, text="").pack(padx=5,side="left")
+
+        # searchbar entry field + packing
+        self.searchbar = ctk.CTkEntry(searchFrame, width=300, placeholder_text="Enter a Movie Name", placeholder_text_color="#555555")
+        self.searchbar.pack(side="right")
+        self.searchbar.bind("<Return>",self.on_search)
+
+        # movie list
+        self.movies_display = ctk.CTkScrollableFrame(movies_tab)
+        self.movies_display.pack(fill="both", expand=True)
+
+        self.populate_tab_with_movies(parent_frame=self.movies_display, movie_list=self.view_model.movie_list[:400])
 
 
 # RUN MAIN LOOP
