@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 def get_all_features_numpy():
-    DIR = "ML_Training\\ml-1m"
+    DIR = "ml-1m"
     MOVIES = "movies.txt"
     RATINGS = "rate.txt"
     USERS = "users.txt"
