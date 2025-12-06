@@ -14,8 +14,10 @@ from tqdm import  tqdm
 from bpr_loss import BPRLoss
 from recall_at_k import  recall_at_k
 from MovieDataset import MovieDataset
+from mf_model import MLP_model
 
 
+from get_user_movie_features import generate_user_features, generate_movie_features
 save_folder = "SAVED_RUNS"
 
 def create_experiment_folder(base="experiment_runs"):
