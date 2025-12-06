@@ -62,6 +62,8 @@ def get_model_rec(age_num, gender_num, occupation_num, movies_watched, k=100):
     model_scores = model_scores.flatten()       # (num_movies,)
 
     # Mask already watched movies
+    model_scores = F.normalize(model_scores,p=2, dim=0)
+
     movies_before_2000 = [4075, 3882]
     model_scores[list(movies_before_2000)] = float('-inf')
     if movies_watched:
@@ -76,7 +78,6 @@ def get_model_rec(age_num, gender_num, occupation_num, movies_watched, k=100):
 
     genre_emb = F.normalize(genre_emb, p=2, dim=1)        # normalize rows
     genres_pref = F.normalize(genres_pref, p=2, dim=0)
-    model_scores = F.normalize(model_scores,p=2, dim=0)
 
     sim = F.cosine_similarity(genre_emb, genres_pref.unsqueeze(0), dim=1)
     sim = F.normalize(sim,p=2,dim=0)
