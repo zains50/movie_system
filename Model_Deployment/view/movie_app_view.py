@@ -59,12 +59,12 @@ class MovieAppView(ctk.CTk):
         self.home_tab = self.tabs.add("Home")
         self.user_tab = self.tabs.add("User Info")
         self.movies_tab = self.tabs.add("Movies")
-        self.final_tab = self.tabs.add("Final List")
+        self.final_tab = self.tabs.add("Settings")
 
         self.build_home_tab()
         self.build_user_tab()
         self.build_movie_tab()
-        # self.build_final_tab()
+        self.build_final_tab()
 
     def build_home_tab(self):
         ctk.CTkLabel(
@@ -74,7 +74,61 @@ class MovieAppView(ctk.CTk):
         ).pack(pady=20)
 
     def build_final_tab(self):
-        pass
+        self.final_tab = self.tabs.add("Final List")
+
+        # ===== HYPERPARAM INPUT =====
+        self.hyper_label = ctk.CTkLabel(
+            self.final_tab,
+            text="Hyperparam (0–1):",
+            font=("Arial", 16)
+        )
+        self.hyper_label.pack(pady=5)
+
+        self.hyper_entry = ctk.CTkEntry(
+            self.final_tab,
+            placeholder_text="0.75",
+            width=120
+        )
+        self.hyper_entry.pack(pady=5)
+
+        # ===== ONLY AFTER 2000 CHECKBOX =====
+        self.after2000_flag = ctk.BooleanVar(value=False)
+
+        after2000_checkbox = ctk.CTkCheckBox(
+            self.final_tab,
+            text="Only Recommend Movies After 2000",
+            variable=self.after2000_flag
+        )
+        after2000_checkbox.pack(pady=10)
+
+
+    def get_settings(self):
+        """
+        Returns:
+            hyperparam (float)
+            only_after_2000 (bool)
+        """
+
+        # Read the entry
+        text_value = self.hyper_entry.get().strip()
+
+        # If empty, default to 0.75
+        if text_value == "":
+            hyper = 0.75
+        else:
+            try:
+                hyper = float(text_value)
+            except ValueError:
+                hyper = 0.75  # fallback if user types nonsense
+
+        # clamp 0–1 just in case
+        hyper = max(0.0, min(1.0, hyper))
+
+        only_after_2000 = self.after2000_flag.get()
+
+        return hyper, only_after_2000
+
+
 
     def build_user_tab(self):
         # Age

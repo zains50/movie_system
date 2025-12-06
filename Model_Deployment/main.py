@@ -52,7 +52,8 @@ class Controller:
         self.movies_watched = []
     def on_refresh(self):
         age_num, gender_num, occupation_num = self.view.get_user_numeric_info()
-        rec_movie_ids = get_model_rec(age_num, gender_num, occupation_num, self.movies_watched, k=100)
+        hyper, only_after_2000 = self.view.get_settings()
+        rec_movie_ids = get_model_rec(age_num, gender_num, occupation_num, self.movies_watched, hyper, only_after_2000, k=100)
         rec_movie_ids = [mid for sub in rec_movie_ids for mid in (sub if isinstance(sub, list) else [sub])]
 
         all_movies = self.model.movie_list()

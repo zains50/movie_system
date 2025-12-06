@@ -36,7 +36,7 @@ model.eval()
 
 
 # --- Complete recommendation function ---
-def get_model_rec(age_num, gender_num, occupation_num, movies_watched, k=100):
+def get_model_rec(age_num, gender_num, occupation_num, movies_watched,hyper, only_after_2000, k=100):
     # Build user feature tensor
     print(gender_num)
     print(age_num)
@@ -64,7 +64,11 @@ def get_model_rec(age_num, gender_num, occupation_num, movies_watched, k=100):
     # Mask already watched movies
     model_scores = F.normalize(model_scores,p=2, dim=0)
 
-    movies_before_2000 = [4075, 3882]
+    if only_after_2000:
+        movies_before_2000 = [x for x in range(3955+250)]
+    else:
+        movies_before_2000 = [4075, 3882]
+
     model_scores[list(movies_before_2000)] = float('-inf')
     if movies_watched:
         model_scores[list(movies_watched)] = float('-inf')
@@ -82,7 +86,7 @@ def get_model_rec(age_num, gender_num, occupation_num, movies_watched, k=100):
     sim = F.cosine_similarity(genre_emb, genres_pref.unsqueeze(0), dim=1)
     sim = F.normalize(sim,p=2,dim=0)
 
-    hyperparam = 0.75
+    hyperparam = hyper
     overall_scores =  model_scores * hyperparam + sim * (1-hyperparam)
     topk_values, topk_indices = torch.topk(overall_scores,k=k)
 
