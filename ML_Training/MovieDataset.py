@@ -57,3 +57,17 @@ class MovieDataset(Dataset):
 
         return users,pos_items,neg_items
 
+    def get_train_pairs(self):
+        users = []
+        pos_items = []
+        neg_items = []
+        for user, item_keys in self.train_dict.items():
+            users.append(user)
+            pos_items.append(item_keys[0])
+            movies_not_watched = set(range(self.n_item-1)) - set(self.train_dict[user])
+            movies_not_watched = list(movies_not_watched)
+            random_neg_item = random.choice(movies_not_watched)
+            neg_items.append(random_neg_item)
+
+        return users,pos_items,neg_items
+

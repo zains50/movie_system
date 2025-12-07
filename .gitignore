@@ -2,7 +2,7 @@
 *.env
 
 ML_Training/ml-1m/*.npy
-posters
+#posters
 
 __pycache__/
 .idea/
