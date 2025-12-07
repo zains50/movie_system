@@ -1,6 +1,6 @@
 import torch
 import numpy as np
-from Model_Deployment.model.machine_learning_model  import MLP_model
+from model.machine_learning_model  import MLP_model
 device = "cpu"
 # device = torch.device(f"cuda:{p['gpu']}" if torch.cuda.is_available() else "cpu")
 import torch.nn.functional as F
@@ -28,7 +28,7 @@ model = MLP_model(
     movie_emb=movie_features,
 )
 
-checkpoint_path = "../experiment_runs/experiment_9/model_checkpoints/epoch_238.pt"
+checkpoint_path = "../training_experiments/experiment_9/model_checkpoints/epoch_238.pt"
 model.load_state_dict(torch.load(checkpoint_path, map_location="cuda:0"))
 model.to(device)
 model.eval()
