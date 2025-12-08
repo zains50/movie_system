@@ -3,7 +3,7 @@ import numpy as np
 
 # from Model_Examination.load_model import epochs
 from MovieDataset import MovieDataset
-from mf_model import MLP_model
+from Neural_Newtork import MLP_model
 from get_processed_features import generate_movie_features, generate_user_features
 from recall_at_k import recall_at_k
 from bpr_loss import BPRLoss

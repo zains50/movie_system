@@ -14,10 +14,10 @@ from tqdm import  tqdm
 from bpr_loss import BPRLoss
 from recall_at_k import  recall_at_k
 from MovieDataset import MovieDataset
-from mf_model import MLP_model
+from Neural_Newtork import MLP_model
 
 
-from get_user_movie_features import generate_user_features, generate_movie_features
+from get_processed_features import generate_user_features, generate_movie_features
 save_folder = "SAVED_RUNS"
 
 def create_experiment_folder(base="experiment_runs"):
@@ -76,7 +76,7 @@ def train(embed_size=256,num_layers=2,batch_size=1048,epochs=100,lr=1e-4,weight_
         "learning rate": lr
     }
     save_params_json(exp_folder, params)
-    print("📝 Saved params.json")
+    print("Saved params.json")
 
     # Recall CSV logger
     log_path = init_recall_csv(exp_folder)
@@ -139,6 +139,7 @@ def train(embed_size=256,num_layers=2,batch_size=1048,epochs=100,lr=1e-4,weight_
 
     for step in tqdm(range(epochs)):
         for i,batch in tqdm(enumerate(train_loader)):
+            print(f'BATCH : {i}/{1000000/batch_size}')
             model.train()
             t0 = time.time()
             user_emb, pos_movie_emb, neg_movie_emb, user_id, pos_movie_id, neg_movie_id = batch

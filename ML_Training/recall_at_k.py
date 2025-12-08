@@ -1,20 +1,8 @@
 import torch
 
+# Metric we use to evaluate our model with
+
 def recall_at_k(num_user,num_item, K, model, test_dict, batches=5):
-    """
-    Compute Recall@K for a recommendation model.
-
-    Parameters:
-    - num_user: int, total number of users
-    - num_item: int, total number of items
-    - K: int, top-K items to consider
-    - model: PyTorch model, should output scores for all items given a user
-    - test_dict: dict, mapping user_id -> list of ground truth item_ids
-    - batches: int, number of user batches to process at a time
-
-    Returns:
-    - recall: float, average Recall@K over all users
-    """
 
     user_indices = list(range(num_user))
     USER_BATCH = num_user // batches

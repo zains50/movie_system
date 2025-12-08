@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-
+# Loss function we use to optimize our model with - Bayesian Personalized Ranking Loss
 
 class BPRLoss(nn.Module):
     def __init__(self):
