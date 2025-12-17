@@ -1,0 +1,18 @@
+
+/* .MoviesTab{
+    background-color: rgb(0, 0, 0);
+    flex: 1; 
+    flex-wrap:wrap;
+    gap:0px;
+    height: 100vh;
+    display: flex;
+    align-items: baseline;
+} */
+
+.MoviesTab {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 32px;
+  background-color: rgb(0, 0, 0);
+}

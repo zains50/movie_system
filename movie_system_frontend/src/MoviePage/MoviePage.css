@@ -1,0 +1,127 @@
+.MovieDefaultPage {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    text-align: center;
+
+}
+
+.MoviePosterImageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* centers image + button */
+    justify-content: center;
+    border-radius: 15%;
+    padding: 3%;
+    float: left;
+    background-color: rgb(4, 5, 5);
+    gap: 24px;
+    margin-top: 1%;
+    margin-left: 4%;
+    box-shadow: 2px 6px 100px rgb(70, 78, 88); /* Slightly larger shadow on hover */
+
+}
+
+
+.MoviePosterImageContainer:hover{
+    box-shadow: 2px 6px 100px rgb(4, 103, 233); /* Slightly larger shadow on hover */
+    /* background-color: #645c5c;  */
+
+}
+
+.MoviePosterImageContainer img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+
+.button_zero {
+  
+  height: auto;
+
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  border: none; /* Remove default border */
+  padding: 15px 32px; /* Space inside the button */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* Remove underlines from <a> tags if used as buttons */
+  display: inline-block; /* Allows setting padding and width */
+  font-size: 16px; /* Increase font size */
+  cursor: pointer; /* Change cursor to a hand pointer */
+  border-radius: 8px; /* Rounded corners */
+  transition-duration: 0.4s; /* Smooth transition for hover effects */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+/* Styles for when the user hovers over the button */
+.button_zero:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
+}
+
+/* Styles for when the button is being clicked */
+.button_zero:active {
+  transform: translateY(2px); /* Simulate a pressed effect */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Smaller shadow when pressed */
+}
+
+/* Ensure accessibility with a visible focus state for keyboard users */
+.button_zero:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Custom focus ring */
+}
+
+
+.button_one {
+  
+  height: auto;
+
+  background-color: #34363d; /* Blue background */
+  color: white; /* White text */
+  border: none; /* Remove default border */
+  padding: 15px 32px; /* Space inside the button */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* Remove underlines from <a> tags if used as buttons */
+  display: inline-block; /* Allows setting padding and width */
+  font-size: 16px; /* Increase font size */
+  cursor: pointer; /* Change cursor to a hand pointer */
+  border-radius: 8px; /* Rounded corners */
+  transition-duration: 0.4s; /* Smooth transition for hover effects */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+/* Styles for when the user hovers over the button */
+.button_one:hover {
+  background-color: rgb(32, 38, 44); /* Blue background */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
+}
+
+/* Styles for when the button is being clicked */
+.button_one:active {
+  transform: translateY(2px); /* Simulate a pressed effect */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Smaller shadow when pressed */
+}
+
+/* Ensure accessibility with a visible focus state for keyboard users */
+.button_one:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.5); /* Custom focus ring */
+}
+
+
+.MovieInfoContainer{
+    padding-top: 8%;
+    padding-right: 16%;
+    padding-left: 40%;
+}
+
+.MovieInfoContainer header{
+    color: white;
+}
+
+.MovieInfoContainer section{
+    padding-top: 4%;
+    color: white;
+}
+
