@@ -16,7 +16,7 @@ export default function WatchList() {
       console.log("Loaded watchlist:", list);
       setMovieList(list);
     });
-  }, []); // run ONCE on mount
+  }, []); 
 
   return (
     <>
