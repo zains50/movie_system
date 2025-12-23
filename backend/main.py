@@ -2,8 +2,11 @@ from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from backend.process_search_query import search_router  # import the router
+
 app = FastAPI()
 
+app.include_router(search_router)
 items_db = {}
 
 
@@ -26,7 +29,7 @@ def create_user(item_id: int, user: User):
 
 @app.get("/")
 def read_root():
-    return {"Hello" : "World"}
+    return {"Hello" : "i am a noobyyy"}
 
 # create an item
 @app.post("/items/{item_id}")
